@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="cbx_CarClass" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox x:Name="cbx_CarClass" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbx_CarClass_SelectionChanged">
             <ComboBoxItem Content="All" IsSelected="True"/>
             <ComboBoxItem Content="Coupé"/>
             <ComboBoxItem Content="Hatchback"/>
@@ -16,7 +16,7 @@
             <ComboBoxItem Content="Convertible"/>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Car Class :" VerticalAlignment="Top"/>
-        <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,90,0,0" VerticalAlignment="Top" Width="179"/>
+        <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,90,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized"/>
         <TextBlock x:Name="tblk_SelectedCar" HorizontalAlignment="Left" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Height="31" FontSize="24"/>
         <TextBlock x:Name="tblk_CarStats" HorizontalAlignment="Left" Margin="642,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="180" Width="140" Text="Performance Stats :"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,90,0,0" TextWrapping="Wrap" Text="Engine : " VerticalAlignment="Top" RenderTransformOrigin="0.53,1.667"/>
