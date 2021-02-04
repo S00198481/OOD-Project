@@ -36,6 +36,12 @@ namespace Project
             MaxRpm = maxRpm;
             FuelMpg = mpg;
         }
+
+        //methods
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 
     class Coupe : Car

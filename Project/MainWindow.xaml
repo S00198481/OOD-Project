@@ -9,11 +9,10 @@
     <Grid>
         <ComboBox x:Name="cbx_CarClass" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbx_CarClass_SelectionChanged">
             <ComboBoxItem Content="All" IsSelected="True"/>
-            <ComboBoxItem Content="Coupé"/>
+            <ComboBoxItem Content="Coupe"/>
             <ComboBoxItem Content="Hatchback"/>
             <ComboBoxItem Content="Saloon"/>
             <ComboBoxItem Content="Estate"/>
-            <ComboBoxItem Content="Convertible"/>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Car Class :" VerticalAlignment="Top"/>
         <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,90,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized"/>
