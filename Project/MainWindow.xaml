@@ -31,7 +31,7 @@
             <ComboBoxItem Content="Single Turbo"/>
             <ComboBoxItem Content="Twin Turbo"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Engine" HorizontalAlignment="Left" Margin="341,90,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Engine" HorizontalAlignment="Left" Margin="341,90,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Engine_SelectionChanged">
             <ComboBoxItem Content="Stock" IsSelected="True"/>
             <ComboBoxItem Content="2.0 K20 I4"/>
             <ComboBoxItem Content="2.5 EJ257 B4"/>
@@ -39,7 +39,7 @@
             <ComboBoxItem Content="4.0 TFSI V6"/>
             <ComboBoxItem Content="1.6 G16E I3"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Exhaust" HorizontalAlignment="Left" Margin="341,120,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Exhaust" HorizontalAlignment="Left" Margin="341,120,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Exhaust_SelectionChanged">
             <ComboBoxItem Content="Stock" IsSelected="True"/>
             <ComboBoxItem Content="Militek Sport"/>
             <ComboBoxItem Content="Straight Through"/>
@@ -68,7 +68,7 @@
             <ComboBoxItem Content="All-Terrain"/>
         </ComboBox>
         <TextBox x:Name="tbx_Name" HorizontalAlignment="Left" Height="23" Margin="341,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="tblk_Mods" HorizontalAlignment="Left" Margin="642,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="140" Text="Modification Stats : "/>
+        <TextBlock x:Name="tblk_Mods" HorizontalAlignment="Left" Margin="642,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="140" Text="Modifications: "/>
         <Button x:Name="btn_Save" Content="Save Setup" HorizontalAlignment="Left" Margin="227,364,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btn_Load" Content="Load Setup" HorizontalAlignment="Left" Margin="386,364,0,0" VerticalAlignment="Top" Width="75"/>
 

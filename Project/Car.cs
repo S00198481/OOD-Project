@@ -23,6 +23,8 @@ namespace Project
 
         public int FuelMpg { get; set; }
 
+        public List<Modification> Mods { get; set; }
+
         //ctors
         public Car(){}
 
@@ -35,6 +37,7 @@ namespace Project
             Torque = torque;
             MaxRpm = maxRpm;
             FuelMpg = mpg;
+            Mods = new List<Modification>();
         }
 
         //methods
