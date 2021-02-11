@@ -137,5 +137,23 @@ namespace Project
             //and set the loaded method to true
             loaded = true;
         }
+
+        private void lbx_Cars_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //first we set the relevant text blocks back to null
+            tblk_CarStats.Text = "Performance Stats : ";
+            tblk_SelectedCar.Text = "";
+            tblk_Mods.Text = "Modification Stats : ";
+
+            //we get the selected car
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            //we set the car's performance number into the CarStats text block
+            tblk_CarStats.Text += String.Format("\n\nTop Speed : {0}KM/H\n\n0-100KM/H Time : {1}s\n\nHorsepower : {2}bhp\n\nTorque : {3}Nm\n\nMax RPM : {4}\n\nMPG : {5}Mpg", 
+                SelectedCar.TopSpeed, SelectedCar.ZeroTo100, SelectedCar.Horsepower, SelectedCar.Torque, SelectedCar.MaxRpm, SelectedCar.FuelMpg);
+
+            //we set the name title block to the car's name
+            tblk_SelectedCar.Text = SelectedCar.Name;
+        }
     }
 }
