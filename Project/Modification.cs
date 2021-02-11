@@ -17,15 +17,18 @@ namespace Project
 
         public double ZeroTo100Mod { get; set; }
 
+        public int Index { get; set; }
+
         //constructors
         public Modification() { }
 
-        public Modification(string name, int speed, int horsepower, double acceleration)
+        public Modification(string name, int speed, int horsepower, double acceleration, int index)
         {
             Name = name;
             TopSpeedMod = speed;
             HorsepowerMod = horsepower;
             ZeroTo100Mod = acceleration;
+            Index = index;
         }
 
     }

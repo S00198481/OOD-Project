@@ -17,7 +17,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Car Class :" VerticalAlignment="Top"/>
         <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,90,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized" SelectionChanged="lbx_Cars_SelectionChanged"/>
         <TextBlock x:Name="tblk_SelectedCar" HorizontalAlignment="Left" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Height="31" FontSize="24"/>
-        <TextBlock x:Name="tblk_CarStats" HorizontalAlignment="Left" Margin="642,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="180" Width="140" Text="Performance Stats :"/>
+        <TextBlock x:Name="tblk_CarStats" HorizontalAlignment="Left" Margin="574,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="180" Width="208" Text="Performance Stats :"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,90,0,0" TextWrapping="Wrap" Text="Engine : " VerticalAlignment="Top" RenderTransformOrigin="0.53,1.667"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,120,0,0" TextWrapping="Wrap" Text="Exhaust : " VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,150,0,0" TextWrapping="Wrap" Text="Turbocharger : " VerticalAlignment="Top" RenderTransformOrigin="0.141,-0.372"/>
@@ -26,7 +26,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="227,240,0,0" TextWrapping="Wrap" Text="Suspension : " VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,270,0,0" TextWrapping="Wrap" Text="Tires : " VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="227,300,0,0" TextWrapping="Wrap" Text="Setup Name : " VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbx_Turbo" HorizontalAlignment="Left" Margin="341,150,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Turbo" HorizontalAlignment="Left" Margin="341,150,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Turbo_SelectionChanged">
             <ComboBoxItem Content="None" IsSelected="True"/>
             <ComboBoxItem Content="Single Turbo"/>
             <ComboBoxItem Content="Twin Turbo"/>
@@ -45,32 +45,34 @@
             <ComboBoxItem Content="Straight Through"/>
             <ComboBoxItem Content="High Flow Catback"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Super" HorizontalAlignment="Left" Margin="341,180,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Super" HorizontalAlignment="Left" Margin="341,180,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Super_SelectionChanged">
             <ComboBoxItem Content="None" IsSelected="True"/>
             <ComboBoxItem Content="Single Scroll Charger"/>
             <ComboBoxItem Content="Twin Scroll Charger"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Brakes" HorizontalAlignment="Left" Margin="341,210,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Brakes" HorizontalAlignment="Left" Margin="341,210,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Brakes_SelectionChanged">
             <ComboBoxItem Content="Stock" IsSelected="True"/>
             <ComboBoxItem Content="Brembo"/>
             <ComboBoxItem Content="StopTech"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Suspension" HorizontalAlignment="Left" Margin="341,240,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Suspension" HorizontalAlignment="Left" Margin="341,240,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Suspension_SelectionChanged">
             <ComboBoxItem Content="Stock" IsSelected="True"/>
             <ComboBoxItem Content="Lowering Springs"/>
             <ComboBoxItem Content="Racing Coilovers"/>
             <ComboBoxItem Content="Rally Shocks"/>
         </ComboBox>
-        <ComboBox x:Name="cbx_Tires" HorizontalAlignment="Left" Margin="341,270,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038">
+        <ComboBox x:Name="cbx_Tires" HorizontalAlignment="Left" Margin="341,270,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.366,-0.038" SelectionChanged="cbx_Tires_SelectionChanged">
             <ComboBoxItem Content="Road" IsSelected="True"/>
             <ComboBoxItem Content="Semi-Slicks"/>
             <ComboBoxItem Content="Slicks"/>
             <ComboBoxItem Content="All-Terrain"/>
         </ComboBox>
         <TextBox x:Name="tbx_Name" HorizontalAlignment="Left" Height="23" Margin="341,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock x:Name="tblk_Mods" HorizontalAlignment="Left" Margin="642,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="140" Text="Modifications: "/>
+        <TextBlock x:Name="tblk_Mods" HorizontalAlignment="Left" Margin="574,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="208" Text="Modifications: "/>
         <Button x:Name="btn_Save" Content="Save Setup" HorizontalAlignment="Left" Margin="227,364,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btn_Load" Content="Load Setup" HorizontalAlignment="Left" Margin="386,364,0,0" VerticalAlignment="Top" Width="75"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="114" Margin="562,90,0,0" VerticalAlignment="Top" Width="203"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="562,204,0,0" VerticalAlignment="Top" Width="203"/>
 
     </Grid>
 </Window>

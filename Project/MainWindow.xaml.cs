@@ -34,17 +34,11 @@ namespace Project
         static List<Car> DisplayList = new List<Car>();
         static bool loaded = false;
 
-        static int HorsepowerMod;
-        static int TopSpeedMod;
-        static double ZeroTo100Mod;
-
         public MainWindow()
         {
             InitializeComponent();
 
             loaded = true;
-
-
         }
 
         public void LoadCars()
@@ -170,6 +164,7 @@ namespace Project
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
             tblk_Mods.Text = "Modifications : ";
+            tblk_CarStats.Text = "Performance Stats : ";
 
             int totalHp = 0;
             foreach (Modification mod in SelectedCar.Mods)
@@ -187,10 +182,11 @@ namespace Project
                 acceleration += mod.ZeroTo100Mod;
             }
 
-
-
             tblk_Mods.Text += String.Format("\n\nTop Speed : {0}KM/H\n0-100KM/H Time : {1}s\nHorsepower : {2}bhp",
-               totalSpeed, acceleration, totalHp); 
+               totalSpeed, acceleration, totalHp);
+
+            tblk_CarStats.Text += String.Format("\n\nTop Speed : {0}KM/H\n\n0-100KM/H Time : {1}s\n\nHorsepower : {2}bhp\n\nTorque : {3}Nm\n\nMax RPM : {4}\n\nMPG : {5}Mpg",
+                SelectedCar.TopSpeed+totalSpeed, SelectedCar.ZeroTo100+acceleration, SelectedCar.Horsepower+totalHp, SelectedCar.Torque, SelectedCar.MaxRpm, SelectedCar.FuelMpg);
         }
 
         private void cbx_Engine_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -206,18 +202,7 @@ namespace Project
 
             if (SelectedCar.Mods != null)
             {
-                bool modToRemove = false;
-                Modification RemoveMod = null;
-                foreach (Modification mod in SelectedCar.Mods)
-                {
-                    if (mod.Name == "Engine")
-                    {
-                        modToRemove = true;
-                        RemoveMod = mod;
-                    }
-                }
-                if(modToRemove)
-                    SelectedCar.Mods.Remove(RemoveMod);
+                RemoveMod("Engine", SelectedCar);
             }
 
             switch (index)
@@ -225,19 +210,19 @@ namespace Project
                 case 0:
                     break;
                 case 1:
-                    SelectedCar.Mods.Add(new Modification("Engine", 0, 10, -.4));
+                    SelectedCar.Mods.Add(new Modification("Engine", 0, 10, -.4, 1));
                     break;
                 case 2:
-                    SelectedCar.Mods.Add(new Modification("Engine", 10, 25, 0));
+                    SelectedCar.Mods.Add(new Modification("Engine", 10, 25, 0, 2));
                     break;
                 case 3:
-                    SelectedCar.Mods.Add(new Modification("Engine", 10, 35, -.5));
+                    SelectedCar.Mods.Add(new Modification("Engine", 10, 35, -.5, 3));
                     break;
                 case 4:
-                    SelectedCar.Mods.Add(new Modification("Engine", 20, 50, .6));
+                    SelectedCar.Mods.Add(new Modification("Engine", 20, 50, .6, 4));
                     break;
                 case 5:
-                    SelectedCar.Mods.Add(new Modification("Engine", -30, 20, -.75));
+                    SelectedCar.Mods.Add(new Modification("Engine", -30, 20, -.75, 5));
                     break;
             }
             UpdateMods();
@@ -254,21 +239,196 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Exhaust", SelectedCar);
+            }
+
             switch (index)
             {
                 case 0:
                     break;
                 case 1:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0));
+                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 1));
                     break;
                 case 2:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 10, 0));
+                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 10, 0, 2));
                     break;
                 case 3:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0));
+                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 3));
                     break;
             }
             UpdateMods();
         }
+
+        private void cbx_Turbo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded == false)
+                return;
+
+            //first we get the value of the engine chosen
+            ComboBoxItem item = (ComboBoxItem)cbx_Turbo.SelectedItem;
+            int index = cbx_Turbo.Items.IndexOf(item);
+
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Turbo", SelectedCar);
+            }
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    SelectedCar.Mods.Add(new Modification("Turbo", 30, 100, 2, 1));
+                    break;
+                case 2:
+                    SelectedCar.Mods.Add(new Modification("Turbo", 30, 150, 1, 2));
+                    break;
+            }
+            UpdateMods();
+        }
+
+        private void cbx_Super_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded == false)
+                return;
+
+            //first we get the value of the engine chosen
+            ComboBoxItem item = (ComboBoxItem)cbx_Super.SelectedItem;
+            int index = cbx_Super.Items.IndexOf(item);
+
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Supercharger", SelectedCar);
+            }
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    SelectedCar.Mods.Add(new Modification("Supercharger", 0, 50, -.7, 1));
+                    break;
+                case 2:
+                    SelectedCar.Mods.Add(new Modification("Supercharger", 0, 75, -1, 2));
+                    break;
+            }
+            UpdateMods();
+        }
+
+        private void cbx_Brakes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded == false)
+                return;
+
+            //first we get the value of the engine chosen
+            ComboBoxItem item = (ComboBoxItem)cbx_Brakes.SelectedItem;
+            int index = cbx_Brakes.Items.IndexOf(item);
+
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Brakes", SelectedCar);
+            }
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 1));
+                    break;
+                case 2:
+                    SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 2));
+                    break;
+            }
+            UpdateMods();
+        }
+
+        private void cbx_Suspension_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded == false)
+                return;
+
+            //first we get the value of the engine chosen
+            ComboBoxItem item = (ComboBoxItem)cbx_Suspension.SelectedItem;
+            int index = cbx_Suspension.Items.IndexOf(item);
+
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Suspension", SelectedCar);
+            }
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 1));
+                    break;
+                case 2:
+                    SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 2));
+                    break;
+            }
+            UpdateMods();
+        }
+
+        private void cbx_Tires_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded == false)
+                return;
+
+            //first we get the value of the engine chosen
+            ComboBoxItem item = (ComboBoxItem)cbx_Tires.SelectedItem;
+            int index = cbx_Tires.Items.IndexOf(item);
+
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar.Mods != null)
+            {
+                RemoveMod("Tires", SelectedCar);
+            }
+
+            switch (index)
+            {
+                case 0:
+                    break;
+                case 1:
+                    SelectedCar.Mods.Add(new Modification("Tires", 5, 0, 0, 1));
+                    break;
+                case 2:
+                    SelectedCar.Mods.Add(new Modification("Tires", 10, 0, 1, 2));
+                    break;
+                case 3:
+                    SelectedCar.Mods.Add(new Modification("Tires", -10, 0, -.5, 2));
+                    break;
+            }
+            UpdateMods();
+        }
+
+        private void RemoveMod(string chosenModification, Car SelectedCar)
+        {
+            bool modToRemove = false;
+            Modification RemoveMod = null;
+            foreach (Modification mod in SelectedCar.Mods)
+            {
+                if (mod.Name == chosenModification)
+                {
+                    modToRemove = true;
+                    RemoveMod = mod;
+                }
+            }
+            if (modToRemove)
+                SelectedCar.Mods.Remove(RemoveMod);
+        }
+
     }
 }
