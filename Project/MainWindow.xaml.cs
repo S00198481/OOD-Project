@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Project
 {
@@ -54,6 +57,11 @@ namespace Project
             Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24);
             CarList.Add(RS6);
 
+            ReloadCars();
+        }
+
+        private void ReloadCars()
+        {
             //set listbox to null
             if (lbx_Cars.ItemsSource != null)
                 lbx_Cars.ItemsSource = null;
@@ -65,7 +73,7 @@ namespace Project
             }
 
             //we set our listbox sort back to the display list
-            lbx_Cars.ItemsSource = DisplayList; 
+            lbx_Cars.ItemsSource = DisplayList;
         }
 
         private void cbx_CarClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -122,6 +130,13 @@ namespace Project
                     foreach (Car car in CarList)
                     {
                         if(car is Estate)
+                            DisplayList.Add(car);
+                    }
+                    break;
+                case "Modded":
+                    foreach (Car car in CarList)
+                    {
+                        if (car is Modded)
                             DisplayList.Add(car);
                     }
                     break;
@@ -430,5 +445,66 @@ namespace Project
                 SelectedCar.Mods.Remove(RemoveMod);
         }
 
+        private void btn_Save_Click(object sender, RoutedEventArgs e)
+        {
+            Car SelectedCar = lbx_Cars.SelectedItem as Car;
+            string filename, filepath;
+
+            if (tbx_Name != null)
+            {
+                SelectedCar.Mods.Add(new Modification("Name", tbx_Name.Text));
+                filename = tbx_Name.Text;
+
+            }
+            else
+            {
+                SelectedCar.Mods.Add(new Modification("Name", SelectedCar.Name));
+                filename = SelectedCar.Name;
+            }
+
+            string json = JsonConvert.SerializeObject(SelectedCar, Formatting.Indented);
+            filepath = string.Format(@"C:\temp\{0}", filename);
+
+
+            using (StreamWriter sw = new StreamWriter(filepath))
+            {
+                sw.Write(json);
+            }
+        }
+
+        private void btn_Load_Click(object sender, RoutedEventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\temp";
+
+                if(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
+
+            CarList.Add(JsonConvert.DeserializeObject<Modded>(fileContent));
+
+            Car NewCar = CarList[CarList.Count - 1];
+            foreach (Modification modification in NewCar.Mods)
+            {
+                if(modification.Name == "Name")
+                {
+                    NewCar.Name = modification.Name;
+                }
+            }
+
+        }
     }
 }

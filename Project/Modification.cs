@@ -19,6 +19,8 @@ namespace Project
 
         public int Index { get; set; }
 
+        public string SetupName { get; set; }
+
         //constructors
         public Modification() { }
 
@@ -29,6 +31,12 @@ namespace Project
             HorsepowerMod = horsepower;
             ZeroTo100Mod = acceleration;
             Index = index;
+        }
+
+        public Modification(string name, string setupName)
+        {
+            Name = name;
+            SetupName = setupName;
         }
 
     }

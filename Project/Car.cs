@@ -74,4 +74,11 @@ namespace Project
         public Estate(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
         { }
     }
+
+    class Modded : Car
+    {
+        //ctor
+        public Modded(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        { }
+    }
 }

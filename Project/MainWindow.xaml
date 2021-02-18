@@ -13,6 +13,7 @@
             <ComboBoxItem Content="Hatchback"/>
             <ComboBoxItem Content="Saloon"/>
             <ComboBoxItem Content="Estate"/>
+            <ComboBoxItem Content="Modded"/>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Car Class :" VerticalAlignment="Top"/>
         <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,90,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized" SelectionChanged="lbx_Cars_SelectionChanged"/>
@@ -69,8 +70,8 @@
         </ComboBox>
         <TextBox x:Name="tbx_Name" HorizontalAlignment="Left" Height="23" Margin="341,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="tblk_Mods" HorizontalAlignment="Left" Margin="574,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="114" Width="208" Text="Modifications: "/>
-        <Button x:Name="btn_Save" Content="Save Setup" HorizontalAlignment="Left" Margin="227,364,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btn_Load" Content="Load Setup" HorizontalAlignment="Left" Margin="386,364,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btn_Save" Content="Save Setup" HorizontalAlignment="Left" Margin="227,364,0,0" VerticalAlignment="Top" Width="75" Click="btn_Save_Click"/>
+        <Button x:Name="btn_Load" Content="Load Setup" HorizontalAlignment="Left" Margin="386,364,0,0" VerticalAlignment="Top" Width="75" Click="btn_Load_Click"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="114" Margin="562,90,0,0" VerticalAlignment="Top" Width="203"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="180" Margin="562,204,0,0" VerticalAlignment="Top" Width="203"/>
 
