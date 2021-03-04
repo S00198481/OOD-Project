@@ -101,6 +101,27 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\civictr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\mx5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mx5-1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="mx5-2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\impreza.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\rs6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="text\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if exist "$(TargetPath).locked" del "$(TargetPath).locked"

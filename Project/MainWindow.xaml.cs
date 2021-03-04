@@ -42,19 +42,21 @@ namespace Project
             InitializeComponent();
 
             loaded = true;
+
+            imgDetailsPageImage.Source = new BitmapImage(new Uri("/images/mx5.jpg", UriKind.Relative));
         }
 
         public void LoadCars()
         {
             //here we declare our car objects
             //in future, these should be loaded from a CSV file
-            Coupe MazdaMx5 = new Coupe("Mazda MX-5", 191, 9.7, 108, 134, 7200, 35);
+            Coupe MazdaMx5 = new Coupe("Mazda MX-5", 191, 9.7, 108, 134, 7200, 35, "/images/mx5.jpg");
             CarList.Add(MazdaMx5);
-            Hatchback CivicTR = new Hatchback("Honda Civic Type-R", 270, 5.7, 306, 400, 8000, 39);
+            Hatchback CivicTR = new Hatchback("Honda Civic Type-R", 270, 5.7, 306, 400, 8000, 39, "/images/civictr.jpg");
             CarList.Add(CivicTR);
-            Saloon Impreza = new Saloon("Subaru Impreza WRX", 230, 5.9, 277, 320, 6500, 27);
+            Saloon Impreza = new Saloon("Subaru Impreza WRX", 230, 5.9, 277, 320, 6500, 27, "/images/impreza.jpg");
             CarList.Add(Impreza);
-            Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24);
+            Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24, "/images/rs6.jpg");
             CarList.Add(RS6);
 
             ReloadCars();
@@ -165,6 +167,11 @@ namespace Project
 
             //we get the selected car
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            //set car image and name in other tab
+            tblkDetailsPageName.Text = "";
+            tblkDetailsPageName.Text = " " + SelectedCar.Name;
+            imgDetailsPageImage.Source = new BitmapImage(new Uri(SelectedCar.ImageUrl, UriKind.Relative));
 
             //we set the car's performance number into the CarStats text block
             tblk_CarStats.Text += String.Format("\n\nTop Speed : {0}KM/H\n\n0-100KM/H Time : {1}s\n\nHorsepower : {2}bhp\n\nTorque : {3}Nm\n\nMax RPM : {4}\n\nMPG : {5}Mpg", 

@@ -25,10 +25,12 @@ namespace Project
 
         public List<Modification> Mods { get; set; }
 
+        public string ImageUrl { get; set; }
+
         //ctors
         public Car(){}
 
-        public Car(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg)
+        public Car(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url)
         {
             Name = name;
             TopSpeed = topSpeed;
@@ -38,6 +40,7 @@ namespace Project
             MaxRpm = maxRpm;
             FuelMpg = mpg;
             Mods = new List<Modification>();
+            ImageUrl = url;
         }
 
         //methods
@@ -50,35 +53,35 @@ namespace Project
     class Coupe : Car
     {
         //ctor
-        public Coupe(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        public Coupe(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url)
         {}
     }
 
     class Hatchback : Car
     {
         //ctor
-        public Hatchback(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        public Hatchback(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url)
         { }
     }
 
     class Saloon : Car
     {
         //ctor
-        public Saloon(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        public Saloon(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url)
         { }
     }
 
     class Estate : Car
     {
         //ctor
-        public Estate(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        public Estate(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url)
         { }
     }
 
     class Modded : Car
     {
         //ctor
-        public Modded(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg)
+        public Modded(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url)
         { }
     }
 }
