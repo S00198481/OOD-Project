@@ -211,6 +211,9 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar == null)
+                return;
+
             //first we get the value of the engine chosen
             ComboBoxItem item = (ComboBoxItem)cbx_Engine.SelectedItem;
             int index = cbx_Engine.Items.IndexOf(item);
@@ -254,6 +257,9 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar == null)
+                return;
+
             if (SelectedCar.Mods != null)
             {
                 RemoveMod("Exhaust", SelectedCar);
@@ -287,6 +293,9 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar == null)
+                return;
+
             if (SelectedCar.Mods != null)
             {
                 RemoveMod("Turbo", SelectedCar);
@@ -316,6 +325,9 @@ namespace Project
             int index = cbx_Super.Items.IndexOf(item);
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar == null)
+                return;
 
             if (SelectedCar.Mods != null)
             {
@@ -347,6 +359,9 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar == null)
+                return;
+
             if (SelectedCar.Mods != null)
             {
                 RemoveMod("Brakes", SelectedCar);
@@ -377,6 +392,9 @@ namespace Project
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if (SelectedCar == null)
+                return;
+
             if (SelectedCar.Mods != null)
             {
                 RemoveMod("Suspension", SelectedCar);
@@ -406,6 +424,9 @@ namespace Project
             int index = cbx_Tires.Items.IndexOf(item);
 
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
+
+            if (SelectedCar == null)
+                return;
 
             if (SelectedCar.Mods != null)
             {
