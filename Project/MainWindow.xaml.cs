@@ -36,6 +36,7 @@ namespace Project
         static List<Car> CarList = new List<Car>();
         static List<Car> DisplayList = new List<Car>();
         static bool loaded = false;
+        static bool loadingModdedCar = false;
 
         public MainWindow()
         {
@@ -43,7 +44,7 @@ namespace Project
 
             loaded = true;
 
-            imgDetailsPageImage.Source = new BitmapImage(new Uri("/images/mx5.jpg", UriKind.Relative));
+            imgDetailsPageImage.Source = new BitmapImage(new Uri("", UriKind.Relative));
         }
 
         public void LoadCars()
@@ -168,10 +169,21 @@ namespace Project
             //we get the selected car
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
 
+            if(SelectedCar == null)
+            {
+                return;
+            }
+
+            if(SelectedCar.Mods != null)
+            {
+                FillModFields(SelectedCar);
+            }
+
             //set car image and name in other tab
-            tblkDetailsPageName.Text = "";
-            tblkDetailsPageName.Text = " " + SelectedCar.Name;
-            imgDetailsPageImage.Source = new BitmapImage(new Uri(SelectedCar.ImageUrl, UriKind.Relative));
+             tblkDetailsPageName.Text = "";
+             tblkDetailsPageName.Text = " " + SelectedCar.Name;
+             imgDetailsPageImage.Source = new BitmapImage(new Uri(SelectedCar.ImageUrl, UriKind.Relative));
+
 
             //we set the car's performance number into the CarStats text block
             tblk_CarStats.Text += String.Format("\n\nTop Speed : {0}KM/H\n\n0-100KM/H Time : {1}s\n\nHorsepower : {2}bhp\n\nTorque : {3}Nm\n\nMax RPM : {4}\n\nMPG : {5}Mpg", 
@@ -179,6 +191,50 @@ namespace Project
 
             //we set the name title block to the car's name
             tblk_SelectedCar.Text = SelectedCar.Name;
+        }
+
+        private void FillModFields(Car SelectedCar)
+        {
+            List<Modification> ModsCopy = new List<Modification>();
+
+            ModsCopy = SelectedCar.Mods;
+
+            loadingModdedCar = true;
+
+            foreach (Modification modification in ModsCopy)
+            {
+                switch (modification.Name)
+                {
+                    case "Engine":
+                        cbx_Engine.SelectedIndex = modification.Index;
+                        break;
+                    case "Exhaust":
+                        cbx_Exhaust.SelectedIndex = modification.Index;
+                        break;
+                    case "Supercharger":
+                        cbx_Super.SelectedIndex = modification.Index;
+                        break;
+                    case "Turbo":
+                        cbx_Turbo.SelectedIndex = modification.Index;
+                        break;
+                    case "Brakes":
+                        cbx_Brakes.SelectedIndex = modification.Index;
+                        break;
+                    case "Tires":
+                        cbx_Tires.SelectedIndex = modification.Index;
+                        break;
+                    case "Suspension":
+                        cbx_Suspension.SelectedIndex = modification.Index;
+                        break;
+                    case "Name":
+                        tbx_Name.Text = modification.SetupName;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            loadingModdedCar = false;
         }
 
         private void UpdateMods()
@@ -225,30 +281,33 @@ namespace Project
             ComboBoxItem item = (ComboBoxItem)cbx_Engine.SelectedItem;
             int index = cbx_Engine.Items.IndexOf(item);
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Engine", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Engine", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Engine", 0, 10, -.4, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Engine", 10, 25, 0, 2));
-                    break;
-                case 3:
-                    SelectedCar.Mods.Add(new Modification("Engine", 10, 35, -.5, 3));
-                    break;
-                case 4:
-                    SelectedCar.Mods.Add(new Modification("Engine", 20, 50, .6, 4));
-                    break;
-                case 5:
-                    SelectedCar.Mods.Add(new Modification("Engine", -30, 20, -.75, 5));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Engine", 0, 10, -.4, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Engine", 10, 25, 0, 2));
+                        break;
+                    case 3:
+                        SelectedCar.Mods.Add(new Modification("Engine", 10, 35, -.5, 3));
+                        break;
+                    case 4:
+                        SelectedCar.Mods.Add(new Modification("Engine", 20, 50, .6, 4));
+                        break;
+                    case 5:
+                        SelectedCar.Mods.Add(new Modification("Engine", -30, 20, -.75, 5));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -267,24 +326,27 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Exhaust", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Exhaust", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 10, 0, 2));
-                    break;
-                case 3:
-                    SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 3));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Exhaust", 0, 10, 0, 2));
+                        break;
+                    case 3:
+                        SelectedCar.Mods.Add(new Modification("Exhaust", 0, 5, 0, 3));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -303,21 +365,24 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Turbo", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Turbo", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Turbo", 30, 100, 2, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Turbo", 30, 150, 1, 2));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Turbo", 30, 100, 2, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Turbo", 30, 150, 1, 2));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -336,21 +401,24 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Supercharger", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Supercharger", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Supercharger", 0, 50, -.7, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Supercharger", 0, 75, -1, 2));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Supercharger", 0, 50, -.7, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Supercharger", 0, 75, -1, 2));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -369,21 +437,24 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Brakes", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Brakes", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 2));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Brakes", 0, 0, 0, 2));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -402,21 +473,24 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Suspension", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Suspension", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 2));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 2));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -435,24 +509,27 @@ namespace Project
             if (SelectedCar == null)
                 return;
 
-            if (SelectedCar.Mods != null)
+            if (loadingModdedCar == false)
             {
-                RemoveMod("Tires", SelectedCar);
-            }
+                if (SelectedCar.Mods != null)
+                {
+                    RemoveMod("Tires", SelectedCar);
+                }
 
-            switch (index)
-            {
-                case 0:
-                    break;
-                case 1:
-                    SelectedCar.Mods.Add(new Modification("Tires", 5, 0, 0, 1));
-                    break;
-                case 2:
-                    SelectedCar.Mods.Add(new Modification("Tires", 10, 0, 1, 2));
-                    break;
-                case 3:
-                    SelectedCar.Mods.Add(new Modification("Tires", -10, 0, -.5, 2));
-                    break;
+                switch (index)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        SelectedCar.Mods.Add(new Modification("Tires", 5, 0, 0, 1));
+                        break;
+                    case 2:
+                        SelectedCar.Mods.Add(new Modification("Tires", 10, 0, 1, 2));
+                        break;
+                    case 3:
+                        SelectedCar.Mods.Add(new Modification("Tires", -10, 0, -.5, 2));
+                        break;
+                }
             }
             UpdateMods();
         }
@@ -527,12 +604,17 @@ namespace Project
             Car NewCar = CarList[CarList.Count - 1];
             foreach (Modification modification in NewCar.Mods)
             {
-                if(modification.Name == "Name")
+                if(modification.SetupName != null)
                 {
-                    NewCar.Name = modification.Name;
+                    NewCar.Name = modification.SetupName;
                 }
             }
 
+        }
+
+        private void btn_Reload_Click(object sender, RoutedEventArgs e)
+        {
+            ReloadCars();
         }
     }
 }
