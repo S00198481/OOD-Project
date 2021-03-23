@@ -65,6 +65,7 @@ namespace Project
                         where c.Id == 1
                         select c;
 
+            var car = query.ToList();
 
             ReloadCars();
         }
@@ -495,6 +496,9 @@ namespace Project
                         break;
                     case 2:
                         SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 2));
+                        break;
+                    case 3:
+                        SelectedCar.Mods.Add(new Modification("Suspension", 0, 0, 0, 3));
                         break;
                 }
             }
