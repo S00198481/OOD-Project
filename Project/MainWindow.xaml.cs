@@ -52,6 +52,7 @@ namespace Project
         {
             //here we declare our car objects
             //in future, these should be loaded from a CSV file
+            /*
             Coupe MazdaMx5 = new Coupe("Mazda MX-5", 191, 9.7, 108, 134, 7200, 35, "/images/mx5.jpg");
             CarList.Add(MazdaMx5);
             Hatchback CivicTR = new Hatchback("Honda Civic Type-R", 270, 5.7, 306, 400, 8000, 39, "/images/civictr.jpg");
@@ -59,13 +60,19 @@ namespace Project
             Saloon Impreza = new Saloon("Subaru Impreza WRX", 230, 5.9, 277, 320, 6500, 27, "/images/impreza.jpg");
             CarList.Add(Impreza);
             Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24, "/images/rs6.jpg");
-            CarList.Add(RS6);
+            CarList.Add(RS6);*/
+
+            var count = (from c in db.CarTBLs
+                         select c).Count();
 
             var query = from c in db.CarTBLs
-                        where c.Id == 1
                         select c;
 
-            var car = query.ToList();
+            foreach (var car in query)
+            {
+                
+            }
+
 
             ReloadCars();
         }
