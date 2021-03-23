@@ -37,6 +37,7 @@ namespace Project
         static List<Car> DisplayList = new List<Car>();
         static bool loaded = false;
         static bool loadingModdedCar = false;
+        Model1Container db = new Model1Container();
 
         public MainWindow()
         {
@@ -59,6 +60,11 @@ namespace Project
             CarList.Add(Impreza);
             Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24, "/images/rs6.jpg");
             CarList.Add(RS6);
+
+            var query = from c in db.CarTBLs
+                        where c.Id == 1
+                        select c;
+
 
             ReloadCars();
         }
