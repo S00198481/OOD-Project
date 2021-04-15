@@ -37,7 +37,7 @@ CREATE TABLE [dbo].[CarTBLs] (
     [Torque] nvarchar(max)  NOT NULL,
     [MaxRpm] nvarchar(max)  NOT NULL,
     [FuelMpg] nvarchar(max)  NOT NULL,
-    [ImageUrl] nvarchar(max)  NOT NULL
+    [ImageUrl] nvarchar(max)  NOT NULL,
 );
 GO
 

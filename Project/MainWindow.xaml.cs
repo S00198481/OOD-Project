@@ -70,7 +70,12 @@ namespace Project
 
             foreach (var car in query)
             {
-                
+                switch(car)
+                {
+
+                }
+
+                new Coupe(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl);   
             }
 
 
