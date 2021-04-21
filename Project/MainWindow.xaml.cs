@@ -21,7 +21,7 @@ namespace Project
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Author - Cian Tivnan S00198481
         Date Started - 04/02/2020
-        Last Edited - 04/02/2020
+        Last Edited - 21/04/2020
         Github Repo - https://github.com/CianTivnan/OOD-Project
         
         Desc : This WPF program allows a user to select and customise a car
@@ -51,17 +51,6 @@ namespace Project
         public void LoadCars()
         {
             //here we declare our car objects
-            //in future, these should be loaded from a CSV file
-            /*
-            Coupe MazdaMx5 = new Coupe("Mazda MX-5", 191, 9.7, 108, 134, 7200, 35, "/images/mx5.jpg");
-            CarList.Add(MazdaMx5);
-            Hatchback CivicTR = new Hatchback("Honda Civic Type-R", 270, 5.7, 306, 400, 8000, 39, "/images/civictr.jpg");
-            CarList.Add(CivicTR);
-            Saloon Impreza = new Saloon("Subaru Impreza WRX", 230, 5.9, 277, 320, 6500, 27, "/images/impreza.jpg");
-            CarList.Add(Impreza);
-            Estate RS6 = new Estate("Audi RS6 Avant", 250, 3.6, 592, 800, 6000, 24, "/images/rs6.jpg");
-            CarList.Add(RS6);*/
-
             var count = (from c in db.CarTBLs
                          select c).Count();
 
@@ -70,16 +59,28 @@ namespace Project
 
             foreach (var car in query)
             {
-                switch(car)
+                string type = car.Type;
+                switch(car.Type)
                 {
-
+                    case "Coupe":
+                        CarList.Add(new Coupe(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        break;
+                    case "Hatchback":
+                        CarList.Add(new Hatchback(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        break;
+                    case "Saloon":
+                        CarList.Add(new Saloon(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        break;
+                    case "Estate":
+                        CarList.Add(new Estate(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        break;
+                    case "Modded":
+                        CarList.Add(new Modded(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        break;
                 }
-
-                new Coupe(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl);   
+                                  
             }
-
-
-            ReloadCars();
+                        ReloadCars();
         }
 
         private void ReloadCars()
@@ -87,6 +88,21 @@ namespace Project
             //set listbox to null
             if (lbx_Cars.ItemsSource != null)
                 lbx_Cars.ItemsSource = null;
+
+            //delete list
+            List<Car> DeleteList = new List<Car>();
+
+            //empty display list, add each to a delete list
+            foreach (Car car in DisplayList)
+            {
+                DeleteList.Add(car);
+            }
+
+            //remove each item in delete list from display list
+            foreach (Car car in DeleteList)
+            {
+                DisplayList.Remove(car);
+            }
 
             //add each car to display list
             foreach (Car car in CarList)
