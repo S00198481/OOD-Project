@@ -63,19 +63,19 @@ namespace Project
                 switch(car.Type)
                 {
                     case "Coupe":
-                        CarList.Add(new Coupe(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        CarList.Add(new Coupe(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl, car.Info));
                         break;
                     case "Hatchback":
-                        CarList.Add(new Hatchback(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        CarList.Add(new Hatchback(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl, car.Info));
                         break;
                     case "Saloon":
-                        CarList.Add(new Saloon(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        CarList.Add(new Saloon(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl, car.Info));
                         break;
                     case "Estate":
-                        CarList.Add(new Estate(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        CarList.Add(new Estate(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl, car.Info));
                         break;
                     case "Modded":
-                        CarList.Add(new Modded(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl));
+                        CarList.Add(new Modded(car.Name, int.Parse(car.TopSpeed), double.Parse(car.ZeroTo100), int.Parse(car.Horsepower), int.Parse(car.Torque), int.Parse(car.MaxRpm), int.Parse(car.FuelMpg), car.ImageUrl, car.Info));
                         break;
                 }
                                   
@@ -217,6 +217,7 @@ namespace Project
             //set car image and name in other tab
              tblkDetailsPageName.Text = "";
              tblkDetailsPageName.Text = " " + SelectedCar.Name;
+             tblkDetailsPageText.Text = SelectedCar.Info;
              imgDetailsPageImage.Source = new BitmapImage(new Uri(SelectedCar.ImageUrl, UriKind.Relative));
 
 

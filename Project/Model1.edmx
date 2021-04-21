@@ -4,81 +4,82 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CarTBLModTBL">
-          <Key>
-            <PropertyRef Name="CarTBLs_Id" />
-            <PropertyRef Name="ModTBLs_Id" />
-          </Key>
-          <Property Name="CarTBLs_Id" Type="int" Nullable="false" />
-          <Property Name="ModTBLs_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CarTBLs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TopSpeed" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ZeroTo100" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Horsepower" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Torque" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="MaxRpm" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="FuelMpg" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Type" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="ModTBLs">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="TopSpeedMod" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="HorsepowerMod" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ZeroTo100Mod" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Index" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="SetupName" Type="nvarchar(max)" />
-          <Property Name="Type" Type="nvarchar(max)" />
-        </EntityType>
-        <Association Name="FK_CarTBLModTBL_CarTBL">
-          <End Role="CarTBLs" Type="Self.CarTBLs" Multiplicity="1" />
-          <End Role="CarTBLModTBL" Type="Self.CarTBLModTBL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CarTBLs">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CarTBLModTBL">
-              <PropertyRef Name="CarTBLs_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CarTBLModTBL_ModTBL">
-          <End Role="ModTBLs" Type="Self.ModTBLs" Multiplicity="1" />
-          <End Role="CarTBLModTBL" Type="Self.CarTBLModTBL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ModTBLs">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CarTBLModTBL">
-              <PropertyRef Name="ModTBLs_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Model1StoreContainer">
-          <EntitySet Name="CarTBLModTBL" EntityType="Self.CarTBLModTBL" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CarTBLs" EntityType="Self.CarTBLs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ModTBLs" EntityType="Self.ModTBLs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CarTBLModTBL_CarTBL" Association="Self.FK_CarTBLModTBL_CarTBL">
-            <End Role="CarTBLs" EntitySet="CarTBLs" />
-            <End Role="CarTBLModTBL" EntitySet="CarTBLModTBL" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CarTBLModTBL_ModTBL" Association="Self.FK_CarTBLModTBL_ModTBL">
-            <End Role="ModTBLs" EntitySet="ModTBLs" />
-            <End Role="CarTBLModTBL" EntitySet="CarTBLModTBL" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="CarTBLs" EntityType="Model1.Store.CarTBLs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ModTBLs" EntityType="Model1.Store.ModTBLs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CarTBLModTBL" EntityType="Model1.Store.CarTBLModTBL" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CarTBLModTBL_CarTBL" Association="Model1.Store.FK_CarTBLModTBL_CarTBL">
+      <End Role="CarTBL" EntitySet="CarTBLs" />
+      <End Role="CarTBLModTBL" EntitySet="CarTBLModTBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CarTBLModTBL_ModTBL" Association="Model1.Store.FK_CarTBLModTBL_ModTBL">
+      <End Role="ModTBL" EntitySet="ModTBLs" />
+      <End Role="CarTBLModTBL" EntitySet="CarTBLModTBL" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CarTBLs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TopSpeed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZeroTo100" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Horsepower" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Torque" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaxRpm" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FuelMpg" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModTBLs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TopSpeedMod" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HorsepowerMod" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZeroTo100Mod" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Index" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SetupName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CarTBLModTBL">
+    <Key>
+      <PropertyRef Name="CarTBLs_Id" />
+      <PropertyRef Name="ModTBLs_Id" />
+    </Key>
+    <Property Name="CarTBLs_Id" Type="int" Nullable="false" />
+    <Property Name="ModTBLs_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CarTBLModTBL_CarTBL">
+    <End Role="CarTBL" Type="Model1.Store.CarTBLs" Multiplicity="1" />
+    <End Role="CarTBLModTBL" Type="Model1.Store.CarTBLModTBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CarTBL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CarTBLModTBL">
+        <PropertyRef Name="CarTBLs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CarTBLModTBL_ModTBL">
+    <End Role="CarTBLModTBL" Type="Model1.Store.CarTBLModTBL" Multiplicity="*" />
+    <End Role="ModTBL" Type="Model1.Store.ModTBLs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ModTBL">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CarTBLModTBL">
+        <PropertyRef Name="ModTBLs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -105,6 +106,7 @@
           <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ModTBLs" Relationship="Model1.CarTBLModTBL" FromRole="CarTBL" ToRole="ModTBL" />
           <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Info" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="ModTBL">
           <Key>
@@ -133,8 +135,7 @@
     <EntitySetMapping Name="CarTBLs">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.CarTBL)">
         <MappingFragment StoreEntitySet="CarTBLs">
-          <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="TopSpeed" ColumnName="TopSpeed" />
           <ScalarProperty Name="ZeroTo100" ColumnName="ZeroTo100" />
@@ -143,20 +144,22 @@
           <ScalarProperty Name="MaxRpm" ColumnName="MaxRpm" />
           <ScalarProperty Name="FuelMpg" ColumnName="FuelMpg" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Info" ColumnName="Info" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ModTBLs">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.ModTBL)">
         <MappingFragment StoreEntitySet="ModTBLs">
-          <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="TopSpeedMod" ColumnName="TopSpeedMod" />
           <ScalarProperty Name="HorsepowerMod" ColumnName="HorsepowerMod" />
           <ScalarProperty Name="ZeroTo100Mod" ColumnName="ZeroTo100Mod" />
           <ScalarProperty Name="Index" ColumnName="Index" />
           <ScalarProperty Name="SetupName" ColumnName="SetupName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

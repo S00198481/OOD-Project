@@ -21,7 +21,7 @@
                 <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,63,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized" SelectionChanged="lbx_Cars_SelectionChanged"/>
                 <TextBlock x:Name="tblk_SelectedCar" HorizontalAlignment="Left" Margin="254,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Height="31" FontSize="24"/>
                 <TextBlock x:Name="tblk_CarStats" HorizontalAlignment="Right" Margin="0,204,-5,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="180" Width="208" Text=" Performance Stats :"/>
-                <TextBlock HorizontalAlignment="Center" Margin="336,90,404,0" TextWrapping="Wrap" Text="Engine : " VerticalAlignment="Top" RenderTransformOrigin="0.53,1.667"/>
+                <TextBlock HorizontalAlignment="Center" Margin="341,90,390,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"><Run Text=" "/><Run Text="Engine :"/></TextBlock>
                 <TextBlock HorizontalAlignment="Left" Margin="332,120,0,0" TextWrapping="Wrap" Text="Exhaust : " VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="301,150,0,0" TextWrapping="Wrap" Text="Turbocharger : " VerticalAlignment="Top" RenderTransformOrigin="0.141,-0.372"/>
                 <TextBlock HorizontalAlignment="Left" Margin="301,180,0,0" TextWrapping="Wrap" Text="Supercharger : " VerticalAlignment="Top" RenderTransformOrigin="-0.413,-0.277"/>
@@ -82,10 +82,14 @@
         </TabItem>
         <TabItem Header="Car Details Page">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14*"/>
+                    <ColumnDefinition Width="379*"/>
+                </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="tblkDetailsPageText" Height="111" TextWrapping="Wrap" Margin="39,0,45,10" RenderTransformOrigin="0.699,0.296" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="702"/>
-                <TextBlock x:Name="tblkDetailsPageName" Margin="281,9,223,0" TextWrapping="Wrap" Text=" No Car Selected!" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Width="282"/>
-                <Image x:Name="imgDetailsPageImage" HorizontalAlignment="Center" Height="222" Margin="10,43,10,126" Width="766" VerticalAlignment="Center"/>
+                <TextBlock x:Name="tblkDetailsPageText" Height="111" TextWrapping="Wrap" Margin="59.016,0,43,10" RenderTransformOrigin="0.699,0.296" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="656" Grid.Column="1"/>
+                <TextBlock x:Name="tblkDetailsPageName" Margin="253.016,9,223,0" TextWrapping="Wrap" Text=" No Car Selected!" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" Width="282" Grid.Column="1"/>
+                <Image x:Name="imgDetailsPageImage" HorizontalAlignment="Center" Height="222" Margin="10,43,10,126" Width="766" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
             </Grid>
         </TabItem>
 

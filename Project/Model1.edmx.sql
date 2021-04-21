@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/23/2021 18:50:59
--- Generated from EDMX file: C:\Users\ciant\Desktop\College Notes\Sem4\OOD\OOD_Project\Project\Model1.edmx
+-- Date Created: 04/21/2021 10:50:43
+-- Generated from EDMX file: C:\Users\ciant\Desktop\CollegeNotes\Sem4\OOD\OOD_Project\Project\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,26 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CarTBLModTBL_CarTBL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CarTBLModTBL] DROP CONSTRAINT [FK_CarTBLModTBL_CarTBL];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CarTBLModTBL_ModTBL]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CarTBLModTBL] DROP CONSTRAINT [FK_CarTBLModTBL_ModTBL];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CarTBLs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CarTBLs];
+GO
+IF OBJECT_ID(N'[dbo].[ModTBLs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ModTBLs];
+GO
+IF OBJECT_ID(N'[dbo].[CarTBLModTBL]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CarTBLModTBL];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -38,7 +53,8 @@ CREATE TABLE [dbo].[CarTBLs] (
     [MaxRpm] nvarchar(max)  NOT NULL,
     [FuelMpg] nvarchar(max)  NOT NULL,
     [ImageUrl] nvarchar(max)  NOT NULL,
-
+    [Type] nvarchar(max)  NULL,
+    [Info] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -50,7 +66,8 @@ CREATE TABLE [dbo].[ModTBLs] (
     [HorsepowerMod] nvarchar(max)  NOT NULL,
     [ZeroTo100Mod] nvarchar(max)  NOT NULL,
     [Index] nvarchar(max)  NOT NULL,
-    [SetupName] nvarchar(max)  NOT NULL
+    [SetupName] nvarchar(max)  NULL,
+    [Type] nvarchar(max)  NULL
 );
 GO
 
