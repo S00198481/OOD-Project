@@ -112,6 +112,24 @@ namespace Project
 
             //we set our listbox sort back to the display list
             lbx_Cars.ItemsSource = DisplayList;
+
+            if (loaded != false)
+            {
+                //reset all modification fields
+                ResetModFields();
+            }
+        }
+
+        private void ResetModFields()
+        {
+            cbx_Engine.SelectedIndex = 0;
+            cbx_Exhaust.SelectedIndex = 0;
+            cbx_Super.SelectedIndex = 0;
+            cbx_Turbo.SelectedIndex = 0;
+            cbx_Brakes.SelectedIndex = 0;
+            cbx_Tires.SelectedIndex = 0;
+            cbx_Suspension.SelectedIndex = 0;
+            tbx_Name.Text = "";
         }
 
         private void cbx_CarClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -209,10 +227,17 @@ namespace Project
                 return;
             }
 
-            if(SelectedCar.Mods != null)
+            if(SelectedCar.Mods.Count() != 0)
             {
                 FillModFields(SelectedCar);
             }
+            if (SelectedCar.Mods.Count() == 0)
+            {
+                ResetModFields();
+            }
+
+            
+            
 
             //set car image and name in other tab
              tblkDetailsPageName.Text = "";
@@ -649,6 +674,7 @@ namespace Project
                 }
             }
 
+            ReloadCars();
         }
 
         private void btn_Reload_Click(object sender, RoutedEventArgs e)

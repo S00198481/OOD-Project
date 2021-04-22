@@ -161,6 +161,7 @@
     <Folder Include="text\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\fn2.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
