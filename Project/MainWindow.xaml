@@ -18,6 +18,12 @@
         <Style TargetType="ListBox">
             <Setter Property="BorderBrush" Value="Black"/>
         </Style>
+        <DataTemplate x:Key="listBoxTemplate">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Image Source="{Binding Icon}" Width="50"/>
+                <TextBlock Text="{Binding Name}" Margin="5" FontSize="12"/>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <TabControl TabStripPlacement="Top">
         <TabItem Header="Setup Menu" Name="SetupMenu">
@@ -31,7 +37,7 @@
                     <ComboBoxItem Content="Modded"/>
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Car Class :" VerticalAlignment="Top"/>
-                <ListBox x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,63,0,0" VerticalAlignment="Top" Width="179" Initialized="lbx_Cars_Initialized" SelectionChanged="lbx_Cars_SelectionChanged"/>
+                <ListBox ItemTemplate="{StaticResource listBoxTemplate}" x:Name="lbx_Cars" HorizontalAlignment="Left" Height="321" Margin="10,63,0,0" VerticalAlignment="Top" Width="211" Initialized="lbx_Cars_Initialized" SelectionChanged="lbx_Cars_SelectionChanged"/>
                 <TextBlock x:Name="tblk_SelectedCar" HorizontalAlignment="Left" Margin="254,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298" Height="31" FontSize="24"/>
                 <TextBlock x:Name="tblk_CarStats" HorizontalAlignment="Right" Margin="0,204,-5,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="180" Width="208" Text=" Performance Stats :"/>
                 <TextBlock HorizontalAlignment="Center" Margin="341,90,390,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55"><Run Text=" "/><Run Text="Engine :"/></TextBlock>

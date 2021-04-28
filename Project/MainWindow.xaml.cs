@@ -236,9 +236,6 @@ namespace Project
                 ResetModFields();
             }
 
-            
-            
-
             //set car image and name in other tab
              tblkDetailsPageName.Text = "";
              tblkDetailsPageName.Text = " " + SelectedCar.Name;
@@ -618,63 +615,80 @@ namespace Project
         {
             Car SelectedCar = lbx_Cars.SelectedItem as Car;
             string filename, filepath;
-
-            if (tbx_Name != null)
+            
+            try
             {
-                SelectedCar.Mods.Add(new Modification("Name", tbx_Name.Text));
-                filename = tbx_Name.Text;
+                if (tbx_Name != null)
+                {
+                    SelectedCar.Mods.Add(new Modification("Name", tbx_Name.Text));
+                    filename = tbx_Name.Text;
 
+                }
+                else
+                {
+                    SelectedCar.Mods.Add(new Modification("Name", SelectedCar.Name));
+                    filename = SelectedCar.Name;
+                }
+
+                string json = JsonConvert.SerializeObject(SelectedCar, Formatting.Indented);
+                filepath = string.Format(@"C:\temp\{0}", filename);
+
+
+                using (StreamWriter sw = new StreamWriter(filepath))
+                {
+                    sw.Write(json);
+                }
+
+                System.Windows.MessageBox.Show("Car JSON file successfully saved");
             }
-            else
+            catch
             {
-                SelectedCar.Mods.Add(new Modification("Name", SelectedCar.Name));
-                filename = SelectedCar.Name;
-            }
-
-            string json = JsonConvert.SerializeObject(SelectedCar, Formatting.Indented);
-            filepath = string.Format(@"C:\temp\{0}", filename);
-
-
-            using (StreamWriter sw = new StreamWriter(filepath))
-            {
-                sw.Write(json);
+                System.Windows.MessageBox.Show("An error occurred when saving the file, please try again.");
             }
         }
 
         private void btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.InitialDirectory = "c:\temp";
+                var fileContent = string.Empty;
+                var filePath = string.Empty;
 
-                if(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
-                    filePath = openFileDialog.FileName;
+                    openFileDialog.InitialDirectory = "c:\temp";
 
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        fileContent = reader.ReadToEnd();
+                        filePath = openFileDialog.FileName;
+
+                        var fileStream = openFileDialog.OpenFile();
+
+                        using (StreamReader reader = new StreamReader(fileStream))
+                        {
+                            fileContent = reader.ReadToEnd();
+                        }
                     }
                 }
-            }
 
-            CarList.Add(JsonConvert.DeserializeObject<Modded>(fileContent));
 
-            Car NewCar = CarList[CarList.Count - 1];
-            foreach (Modification modification in NewCar.Mods)
-            {
-                if(modification.SetupName != null)
+                CarList.Add(JsonConvert.DeserializeObject<Modded>(fileContent));
+
+                Modded NewCar = CarList[CarList.Count - 1] as Modded;
+                foreach (Modification modification in NewCar.Mods)
                 {
-                    NewCar.Name = modification.SetupName;
+                    if (modification.SetupName != null)
+                    {
+                        NewCar.Name = modification.SetupName;
+                    }
                 }
+                NewCar.Icon = "/images/cog.png";
+                ReloadCars();
             }
-
-            ReloadCars();
+            catch
+            {
+                System.Windows.MessageBox.Show("An error occured loading the file. Please ensure you have selected the correct file.");
+            }
         }
 
         private void btn_Reload_Click(object sender, RoutedEventArgs e)

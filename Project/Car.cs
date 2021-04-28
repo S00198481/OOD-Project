@@ -54,36 +54,51 @@ namespace Project
 
     class Coupe : Car
     {
+        public string Icon { get; set; }
         //ctor
         public Coupe(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url, string info) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url, info)
-        {}
+        {
+            Icon = "/images/coupe.png";
+        }
     }
 
     class Hatchback : Car
     {
+        public string Icon { get; set; }
         //ctor
         public Hatchback(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url, string info) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url, info)
-        { }
+        {
+            Icon = "/images/hatchback.png";
+        }
     }
 
     class Saloon : Car
     {
+        public string Icon { get; set; }
         //ctor
         public Saloon(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url, string info) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url, info)
-        { }
+        {
+            Icon = "/images/saloon.png";
+        }
     }
 
     class Estate : Car
     {
+        public string Icon { get; set; }
         //ctor
         public Estate(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url, string info) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url, info)
-        { }
+        {
+            Icon = "/images/estate.png";
+        }
     }
 
     class Modded : Car
     {
+        public string Icon { get; set; }
         //ctor
         public Modded(string name, int topSpeed, double zeroTo100, int horsePower, int torque, int maxRpm, int mpg, string url, string info) : base(name, topSpeed, zeroTo100, horsePower, torque, maxRpm, mpg, url, info)
-        { }
+        {
+            Icon = "/images/cog.png";
+        }
     }
 }

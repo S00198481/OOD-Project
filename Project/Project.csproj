@@ -162,6 +162,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\fn2.jpg" />
+    <Resource Include="images\cog.png" />
+    <Resource Include="images\coupe.png" />
+    <Resource Include="images\estate.png" />
+    <Resource Include="images\hatchback.png" />
+    <Resource Include="images\saloon.png" />
+    <Resource Include="images\s4.jpg" />
+    <Resource Include="images\integra.jpg" />
+    <Resource Include="images\legacy.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
